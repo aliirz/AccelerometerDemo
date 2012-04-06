@@ -10,6 +10,11 @@
 
 @implementation ViewController
 
+@synthesize xLabel = _xLabel;
+@synthesize yLabel = _yLabel;
+@synthesize zLabel = _zLabel;
+@synthesize accelerometer = _accelerometer;
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -21,7 +26,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+	
+    self.accelerometer = [UIAccelerometer sharedAccelerometer];
+    self.accelerometer.updateInterval = .2;
+    self.accelerometer.delegate = self;
+    
 }
 
 - (void)viewDidUnload
@@ -55,6 +64,13 @@
 {
     // Return YES for supported orientations
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
+}
+
+-(void)accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration{
+    
+    self.xLabel.text = [NSString stringWithFormat:@"%f", acceleration.x];
+    self.yLabel.text = [NSString stringWithFormat:@"%f", acceleration.y];
+    self.zLabel.text = [NSString stringWithFormat:@"%f", acceleration.z];
 }
 
 @end

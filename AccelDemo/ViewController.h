@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController <UIAccelerometerDelegate>
+
+
+
+@property(nonatomic, strong) IBOutlet UILabel *xLabel;
+@property(nonatomic, strong) IBOutlet UILabel *yLabel;
+@property(nonatomic, strong) IBOutlet UILabel *zLabel;
+
+@property(nonatomic, strong) UIAccelerometer *accelerometer;
 
 @end
